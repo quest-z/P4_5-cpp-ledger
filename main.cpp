@@ -2,6 +2,7 @@
 #include <string> // std::string 在这里
 #include <vector>
 #include <map>
+#include <limits>
 
 struct Bill {
     double amount;
@@ -11,17 +12,44 @@ struct Bill {
 };
 
 int main() {
-    Bill b0;                          // 创建一个 Bill 对象
-    b0.amount = 23.5;                 // 用点号访问字段
-    b0.category = "交通";
-    b0.note = "食堂午饭";
-    b0.date = "2026-10-03";
-    Bill b1={38,"餐饮","无","2026-10-03"};
-    Bill b2={14,"餐饮","无","2026-10-03"};
     std::vector<Bill> bills;
-    bills.push_back(b0);
-    bills.push_back(b1);
-    bills.push_back(b2);
+    while(1){
+        std::cout<<"请输入您的选择:"<<std::endl;
+        std::cout<<"1.记一笔 2.退出"<<std::endl;
+        std::string choice;
+        std::getline(std::cin,choice);
+        if(choice == "1"){
+            std::cout<<"请输入账单数目:"<<std::endl;
+            std::string line;
+            double amount;
+            while(1){
+                try{
+                    std::getline(std::cin,line);
+                    amount = std::stod(line);
+                    break;
+                }catch(...){
+                    std::cout<<"请正确输入数字"<<std::endl;
+                }
+            }
+            std::cout<<"请输入账单类别:"<<std::endl;
+            std::string category;
+            std::getline(std::cin,category);
+            std::cout<<"请输入账单备注:"<<std::endl;
+            std::string note;
+            std::getline(std::cin,note);
+            std::cout<<"请输入账单日期:"<<std::endl;
+            std::string date;
+            std::getline(std::cin,date);
+            Bill b = {amount,category,note,date};
+            bills.push_back(b);
+        }
+        else if(choice == "2"){
+            break;
+        }
+        else{
+            std::cout<<"输入无效"<<std::endl;
+        }
+    }
     double total = 0;
     std::map<std::string,double> summary;
     for(const Bill& b : bills)
