@@ -7,7 +7,7 @@ P1记账本的C++实现
 - 拆分为多文件，工程化解耦
 
 ## 运行
-g++ main.cpp -o ledger && ./ledger
+cmake -B build && cmake --build build && ./build/ledger
 
 ## 收获
 - C++循环内变量不带出循环;创建变量若不赋初值,内存垃圾值
