@@ -3,13 +3,8 @@
 #include <vector>
 #include <map>
 #include <limits>
+#include "bill.h"
 
-struct Bill {
-    double amount;
-    std::string category;
-    std::string note;
-    std::string date;
-};
 
 int main() {
     std::vector<Bill> bills;
@@ -54,7 +49,7 @@ int main() {
     std::map<std::string,double> summary;
     for(const Bill& b : bills)
     {
-        std::cout<<b.category<<" "<<b.amount<<std::endl;
+        b.print();
         summary[b.category]+=b.amount;
         total+=b.amount;
     }
